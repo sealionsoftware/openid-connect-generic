@@ -217,7 +217,7 @@ class OpenID_Connect_Generic_Client_Wrapper {
 		$url .= $query ? '&' : '?';
 
 		// prevent redirect back to the IdP when logging out in auto mode
-		if ( $this->settings->login_type === 'auto' && $redirect_url === 'wp-login.php?loggedout=true' ) {
+		if ( $this->settings->login_type === 'auto' && parse_url($redirect_url, PHP_URL_PATH) === '/wp-login.php' ) {
 			$redirect_url = '';
 		}
 
